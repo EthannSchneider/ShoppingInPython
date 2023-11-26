@@ -1,14 +1,17 @@
 import unittest
-from shopping.article import *
-
+from shopping.article import Article
+from shopping.exception.article.special_char_in_description_exception import SpecialCharInDescriptionException
+from shopping.exception.article.too_long_description_exception import TooLongDescriptionException
+from shopping.exception.article.too_short_descritpion_exception import TooShortDescriptionException
+from shopping.exception.article.wrong_price_exception import WrongPriceException
 
 class TestArticle(unittest.TestCase):
 
     # region private attributes
-    __article = Article
-    __id = 0
-    __description = ""
-    __price = 0.0
+    __article: Article
+    __id: int
+    __description: str
+    __price: float
     # endregion private attributes
 
     # region public methods
@@ -47,7 +50,7 @@ class TestArticle(unittest.TestCase):
 
         # when
         with self.assertRaises(TooShortDescriptionException):
-            check_description("TooShort")
+            self.__article.description = "TooShort"
         # then
         # throw exception
 
@@ -56,7 +59,7 @@ class TestArticle(unittest.TestCase):
 
         # when
         with self.assertRaises(SpecialCharInDescriptionException):
-            check_description("Jacques+Daniel")
+            self.__article.description = "Jacques+Daniel" 
         # then
         # throw exception
 
@@ -64,7 +67,7 @@ class TestArticle(unittest.TestCase):
         # given
         # when
         with self.assertRaises(TooLongDescriptionException):
-            check_description("A very very very very very looonnng descriptioooooon")
+            self.__article.description = "A very very very very very looonnng descriptioooooon"
         # then
         # throw exception
 
@@ -80,7 +83,22 @@ class TestArticle(unittest.TestCase):
         self.assertEqual(self.__article.price, self.expected_price)
 
     # TODO: Add PriceUpdateWithNegativeValue => WrongPriceException
-    # TODO: Add PriceUpdateSameValue => WrongPriceException
+    def test_price_updatePriceWithNegativeValue_throwException(self):
+        # given
+        # when
+        with self.assertRaises(WrongPriceException):
+            self.__article.price = -12.20
+        # then
+        # throw exception
+    
+    def test_price_updatePriceWithSameValue_throwException(self):
+        # given
+        # when
+        with self.assertRaises(WrongPriceException):
+            self.__article.price = self.__price
+        # then
+        # throw exception
+    
     # endregion price
     # endregion public methods
 

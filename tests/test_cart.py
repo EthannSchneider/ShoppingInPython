@@ -1,6 +1,6 @@
 import unittest
-from tests.articleGenerator import ArticleGenerator
-from shopping.cartItem import CartItem
+from tests.article_generator import ArticleGenerator
+from shopping.cart_item import CartItem
 from shopping.cart import Cart
 
 
