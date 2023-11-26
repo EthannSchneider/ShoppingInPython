@@ -1,15 +1,15 @@
 import unittest
-from tests.articleGenerator import ArticleGenerator
-from shopping.cartItem import *
+from tests.article_generator import ArticleGenerator
+from shopping.cart_item import *
 from shopping.article import Article
 
 
 class TestCartItem(unittest.TestCase):
 
     # region private attributes
-    __cartItem = CartItem
-    __price = float(0.00)
-    __quantity = 0
+    __cartItem: CartItem
+    __price: float
+    __quantity: int
     # endregion private attributes
 
     def setUp(self):
@@ -20,7 +20,7 @@ class TestCartItem(unittest.TestCase):
     def test_AllProperties_AfterInstantiation_Success(self):
         # given
         # refer to Setup
-        self.__price = float(2.00)
+        self.__price = 3.00
         # when
         # Event will be triggered by constructor
         self.__cartItem.article.price = self.__price

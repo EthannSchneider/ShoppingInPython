@@ -1,9 +1,8 @@
-from shopping.cartItem import CartItem
-
+from shopping.cart_item import CartItem
 
 class Cart:
     # region private attributes
-    __cartItems = [CartItem]
+    __cart_items: list[CartItem]
     # endregion private attributes
 
     def add(self):
@@ -13,14 +12,14 @@ class Cart:
         raise NotImplementedError
 
     @property
-    def cartitems(self):
+    def cart_items(self):
         raise NotImplementedError
 
-    def doesexist(self):
+    def does_exist(self):
         raise NotImplementedError
 
     def cheapest(self):
         raise NotImplementedError
 
-    def mostexpensive(self):
+    def most_expensive(self):
         raise NotImplementedError

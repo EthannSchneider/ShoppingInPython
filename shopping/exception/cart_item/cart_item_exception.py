@@ -1,0 +1,2 @@
+class CartItemException(Exception):
+    pass
